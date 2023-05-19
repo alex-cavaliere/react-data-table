@@ -1,0 +1,136 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#employee-div{
+  margin: auto;
+  width: 85%;
+}
+.container, header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+form{
+  background-color: #98ac41;
+  padding: 4rem;
+  border-radius: 10px;
+}
+fieldset{
+  border-radius: 10px;
+  background-color: #687e12;
+}
+.list-title{
+  font-size: 2rem;
+}
+#create-employee label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 10px;
+}
+
+.address {
+  margin-top: 10px;
+}
+a, button {
+  font-family: 'Copperplate';
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 1rem;
+  color: black;
+  font-weight: bold;
+  background-color: #687e12;
+}
+#create-employee button{
+  margin-top: 1rem;
+  padding: 1rem 2rem 1rem 2rem;
+}
+.close{
+  padding: 0.5rem 0.8rem;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.entries select{
+  margin: 0.7rem;
+}
+.search-container label {
+  padding-right: 0.5rem;
+}
+td {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 1rem;
+}
+tbody tr {
+  background-color: #f9f9f9;
+}
+tbody tr:nth-child(2n + 1){
+  background-color: #f1f1f1;
+}
+tbody tr td:nth-child(1n + 2) {
+  background: #f9f9f9;
+}
+th {
+  border-bottom: 1px solid black;
+}
+th div {
+  width: max-content;
+  padding: 0.8rem 1rem;
+}
+th:hover {
+  cursor: pointer;
+}
+tfoot td {
+  border: none;
+}
+.pages {
+  display: flex;
+}
+.pages > div{
+  text-align: center;
+  margin: 0.2rem;
+  border-radius: 5px;
+  border: 1px solid #979797;
+  padding: 1rem;
+  width: 30%;
+  background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+}
+.page-number:hover {
+  cursor: pointer;
+}
+#prev-btn, #next-btn {
+  border: none;
+  border-radius: 10px;
+}
+.empty-list, table {
+  margin: 2rem
+}
+.empty-list {
+  text-align: center;
+}
+.chevrons{
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+.chevrons i {
+  height: 7px;
+}
+.unsorted{
+  opacity: 0.2;
+}
+.data-title{
+  display: flex;
+  justify-content: center;
+}
