@@ -16,7 +16,7 @@ Here's an example of how you can import and use the `DataTable` component:
 
 ```jsx
 import React from 'react';
-import DataTable from 'my-own-table';
+import DataTable from 'my-personal-table';
 
 const MyComponent = () => {
   const data = [
@@ -41,12 +41,6 @@ export default MyComponent;
 The `DataTable` component accepts the following props:
 
 - `data` (required): An array of objects representing the data to be displayed in the table. Each object should contain properties corresponding to the table columns.
-
-## Customization
-
-The `DataTable` component can be customized to fit your specific requirements. You can style the component using CSS or override its default styles using CSS-in-JS libraries like styled-components.
-
-Additionally, you can pass additional props to configure the appearance and behavior of the table. Refer to the component's documentation or the source code for more details on available customization options.
 
 ## Contributions
 
