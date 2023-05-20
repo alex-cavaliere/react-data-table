@@ -6,7 +6,6 @@ function DataTable(props) {
     const [sortedData, setSortedData] = useState(data)
     const [ascendent, setAscendent] = useState(true)
     const [unFound, setUnFound] = useState(false)
-
     const sortData = (filterId) => {
         const tableList = document.querySelectorAll('th')
         switch(filterId) {
@@ -83,18 +82,20 @@ function DataTable(props) {
     const searchEmployee = (e) => {
         let value = e.target.value
         let result = []
-        if(data.length > 0){
-            data.filter((employee) => {
-                const EmployeeList = JSON.stringify(Object.values(employee))
-                if(EmployeeList.toLowerCase().includes(value.toLowerCase())) {
-                    result.push(employee)
-                }if(result.length < 1){
-                    setUnFound(true)
-                }else{
-                    setUnFound(false)
-                }
-                return setSortedData(result)
-            })
+        if(data !== null){
+            if(data.length > 0){
+                data.filter((employee) => {
+                    const EmployeeList = JSON.stringify(Object.values(employee))
+                    if(EmployeeList.toLowerCase().includes(value.toLowerCase())) {
+                        result.push(employee)
+                    }if(result.length < 1){
+                        setUnFound(true)
+                    }else{
+                        setUnFound(false)
+                    }
+                    return setSortedData(result)
+                })
+            }
         }
     }
     
@@ -141,17 +142,19 @@ function DataTable(props) {
     },[data, entry, pages.length, sortedData, unFound])
     useEffect(() => {
         if(data !== null){
-            if(currentPage.current === 0){
-                document.getElementById('prev-btn').style.background = 'none'
-                document.getElementById('next-btn').style.background = 'none'
-            }else if(firstEntry === 1) {
-                document.getElementById('prev-btn').style.background = 'none'
-            }else{
-                document.getElementById('prev-btn').style.background = '#687e12'
-            }if(maxEntries === sortedData.length){
-                document.getElementById('next-btn').style.background = 'none'
-            }else{
-                document.getElementById('next-btn').style.background = '#687e12'
+            if(data.length > 0){
+                if(currentPage.current === 0){
+                    document.getElementById('prev-btn').style.background = 'none'
+                    document.getElementById('next-btn').style.background = 'none'
+                }else if(firstEntry === 1) {
+                    document.getElementById('prev-btn').style.background = 'none'
+                }else{
+                    document.getElementById('prev-btn').style.background = '#687e12'
+                }if(maxEntries === sortedData.length){
+                    document.getElementById('next-btn').style.background = 'none'
+                }else{
+                    document.getElementById('next-btn').style.background = '#687e12'
+                }
             }
         }  
     },[currentPage, data, firstEntry, maxEntries, sortedData])
@@ -173,7 +176,7 @@ function DataTable(props) {
                     <input onKeyUp={searchEmployee} type="text" id="searchbar" name="searchbar"/>
                 </div>
             </div>
-            {data !== null ? (<table>
+            {data !== null && data.length > 0 ? (<table>
                 <thead>
                     <tr>
                     {

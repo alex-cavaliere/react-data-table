@@ -117,19 +117,21 @@ function DataTable(props) {
   var searchEmployee = function searchEmployee(e) {
     var value = e.target.value;
     var result = [];
-    if (data.length > 0) {
-      data.filter(function (employee) {
-        var EmployeeList = JSON.stringify(Object.values(employee));
-        if (EmployeeList.toLowerCase().includes(value.toLowerCase())) {
-          result.push(employee);
-        }
-        if (result.length < 1) {
-          setUnFound(true);
-        } else {
-          setUnFound(false);
-        }
-        return setSortedData(result);
-      });
+    if (data !== null) {
+      if (data.length > 0) {
+        data.filter(function (employee) {
+          var EmployeeList = JSON.stringify(Object.values(employee));
+          if (EmployeeList.toLowerCase().includes(value.toLowerCase())) {
+            result.push(employee);
+          }
+          if (result.length < 1) {
+            setUnFound(true);
+          } else {
+            setUnFound(false);
+          }
+          return setSortedData(result);
+        });
+      }
     }
   };
   var pages = [];
@@ -176,18 +178,20 @@ function DataTable(props) {
   }, [data, entry, pages.length, sortedData, unFound]);
   (0, useEffect)(function () {
     if (data !== null) {
-      if (currentPage.current === 0) {
-        document.getElementById('prev-btn').style.background = 'none';
-        document.getElementById('next-btn').style.background = 'none';
-      } else if (firstEntry === 1) {
-        document.getElementById('prev-btn').style.background = 'none';
-      } else {
-        document.getElementById('prev-btn').style.background = '#687e12';
-      }
-      if (maxEntries === sortedData.length) {
-        document.getElementById('next-btn').style.background = 'none';
-      } else {
-        document.getElementById('next-btn').style.background = '#687e12';
+      if (data.length > 0) {
+        if (currentPage.current === 0) {
+          document.getElementById('prev-btn').style.background = 'none';
+          document.getElementById('next-btn').style.background = 'none';
+        } else if (firstEntry === 1) {
+          document.getElementById('prev-btn').style.background = 'none';
+        } else {
+          document.getElementById('prev-btn').style.background = '#687e12';
+        }
+        if (maxEntries === sortedData.length) {
+          document.getElementById('next-btn').style.background = 'none';
+        } else {
+          document.getElementById('next-btn').style.background = '#687e12';
+        }
       }
     }
   }, [currentPage, data, firstEntry, maxEntries, sortedData]);
@@ -209,7 +213,7 @@ function DataTable(props) {
     type: "text",
     id: "searchbar",
     name: "searchbar"
-  }))), data !== null ? /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, Object.keys(data[0]).map(function (key, index) {
+  }))), data !== null && data.length > 0 ? /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, Object.keys(data[0]).map(function (key, index) {
     return /*#__PURE__*/React.createElement("th", {
       id: key,
       onClick: function onClick() {
