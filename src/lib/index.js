@@ -8,7 +8,6 @@ function DataTable(props) {
     const [unFound, setUnFound] = useState(false)
 
     const sortData = (filterId) => {
-        //const filterId = e.target.id
         const tableList = document.querySelectorAll('th')
         switch(filterId) {
             case filterId :
@@ -70,7 +69,6 @@ function DataTable(props) {
                 }
             break;
             case 'prev-btn':
-                console.log('skip to prev page')
                 if(currentPage.current > 1){
                     currentPage.current--
                     setFirstEntry(firstEntry - entry)
@@ -81,11 +79,11 @@ function DataTable(props) {
                 return console.log('no action')
         }
     }
-    console.log(currentPage.current)
+
     const searchEmployee = (e) => {
         let value = e.target.value
         let result = []
-        if(localStorage.length > 0){
+        if(data.length > 0){
             data.filter((employee) => {
                 const EmployeeList = JSON.stringify(Object.values(employee))
                 if(EmployeeList.toLowerCase().includes(value.toLowerCase())) {
@@ -98,11 +96,10 @@ function DataTable(props) {
                 return setSortedData(result)
             })
         }
-        //console.log(result)
     }
     
     let pages = []
-    if(localStorage.length > 0){
+    if(data.length > 0){
         const NumberOfPages = Math.ceil(sortedData.length/entry)
         for(let i = 1; i <= NumberOfPages; i++){
             pages.push(i)
@@ -124,7 +121,7 @@ function DataTable(props) {
         }
     }
     useEffect(() => {
-        if(localStorage.length > 0){
+        if(data.length > 0){
             if(pages.length < 1){
                 currentPage.current = 0
             }else{
@@ -132,10 +129,8 @@ function DataTable(props) {
             }
             if(sortedData.length >= entry){
                 setMaxEntries(entry)
-                //console.log('selected entry')
             }else{
                 setMaxEntries(sortedData.length)
-                //console.log('sortedData.length')
             }if(unFound){
                 setFirstEntry(0)
                 setMaxEntries(0)
@@ -143,10 +138,9 @@ function DataTable(props) {
                 setFirstEntry(1)
             }
         }
-    },[entry, pages.length, sortedData, unFound])
-    //console.log(firstEntry,maxEntries)
+    },[data.length, entry, pages.length, sortedData, unFound])
     useEffect(() => {
-        if(localStorage.length > 0){
+        if(data.length > 0){
             if(currentPage.current === 0){
                 document.getElementById('prev-btn').style.background = 'none'
                 document.getElementById('next-btn').style.background = 'none'
@@ -160,7 +154,7 @@ function DataTable(props) {
                 document.getElementById('next-btn').style.background = '#687e12'
             }
         }  
-    },[currentPage, firstEntry, maxEntries, sortedData])
+    },[currentPage, data.length, firstEntry, maxEntries, sortedData])
     return(
         <div id="employee-div" className="container">
             <div className="table-header">
@@ -179,7 +173,7 @@ function DataTable(props) {
                     <input onKeyUp={searchEmployee} type="text" id="searchbar" name="searchbar"/>
                 </div>
             </div>
-            {localStorage.length > 0 ? (<table>
+            {data.length > 0 ? (<table>
                 <thead>
                     <tr>
                     {

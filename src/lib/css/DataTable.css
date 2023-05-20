@@ -13,28 +13,10 @@
   align-items: center;
   justify-content: center;
 }
-form{
-  background-color: #98ac41;
-  padding: 4rem;
-  border-radius: 10px;
-}
-fieldset{
-  border-radius: 10px;
-  background-color: #687e12;
-}
 .list-title{
   font-size: 2rem;
 }
-#create-employee label {
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 10px;
-}
-
-.address {
-  margin-top: 10px;
-}
-a, button {
+tfoot button {
   font-family: 'Copperplate';
   text-decoration: none;
   border: 1px solid black;
@@ -44,13 +26,7 @@ a, button {
   font-weight: bold;
   background-color: #687e12;
 }
-#create-employee button{
-  margin-top: 1rem;
-  padding: 1rem 2rem 1rem 2rem;
-}
-.close{
-  padding: 0.5rem 0.8rem;
-}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
