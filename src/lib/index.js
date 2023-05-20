@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-import './css/DataTable.css'
+import "./css/DataTable.css"
 
 function DataTable(props) {
     const data = props.data
@@ -99,7 +99,7 @@ function DataTable(props) {
     }
     
     let pages = []
-    if(data.length > 0){
+    if(data !== null){
         const NumberOfPages = Math.ceil(sortedData.length/entry)
         for(let i = 1; i <= NumberOfPages; i++){
             pages.push(i)
@@ -121,7 +121,7 @@ function DataTable(props) {
         }
     }
     useEffect(() => {
-        if(data.length > 0){
+        if(data !== null){
             if(pages.length < 1){
                 currentPage.current = 0
             }else{
@@ -138,9 +138,9 @@ function DataTable(props) {
                 setFirstEntry(1)
             }
         }
-    },[data.length, entry, pages.length, sortedData, unFound])
+    },[data, entry, pages.length, sortedData, unFound])
     useEffect(() => {
-        if(data.length > 0){
+        if(data !== null){
             if(currentPage.current === 0){
                 document.getElementById('prev-btn').style.background = 'none'
                 document.getElementById('next-btn').style.background = 'none'
@@ -154,7 +154,7 @@ function DataTable(props) {
                 document.getElementById('next-btn').style.background = '#687e12'
             }
         }  
-    },[currentPage, data.length, firstEntry, maxEntries, sortedData])
+    },[currentPage, data, firstEntry, maxEntries, sortedData])
     return(
         <div id="employee-div" className="container">
             <div className="table-header">
@@ -173,7 +173,7 @@ function DataTable(props) {
                     <input onKeyUp={searchEmployee} type="text" id="searchbar" name="searchbar"/>
                 </div>
             </div>
-            {data.length > 0 ? (<table>
+            {data !== null ? (<table>
                 <thead>
                     <tr>
                     {
@@ -206,7 +206,7 @@ function DataTable(props) {
                             <button id='prev-btn' onClick={handlePrevNext}>Preview</button>
                         </td>
                         <td className="pages">
-                            {data.length > 0 && pages.map(page => {return <div className='page-number' onClick={selectPage} key={page}>{(page)}</div>})}
+                            {data !== null && pages.map(page => {return <div className='page-number' onClick={selectPage} key={page}>{(page)}</div>})}
                         </td>
                         <td>
                             <button id='next-btn' onClick={handlePrevNext}>Next</button>
