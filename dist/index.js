@@ -14,8 +14,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-// eslint-disable-next-line no-sequences
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) {return _d = !0, _e = err;} finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) {return  _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function DataTable(props) {
   var data = props.data;
@@ -32,7 +31,6 @@ function DataTable(props) {
     unFound = _useState6[0],
     setUnFound = _useState6[1];
   var sortData = function sortData(filterId) {
-    //const filterId = e.target.id
     var tableList = document.querySelectorAll('th');
     switch (filterId) {
       case filterId:
@@ -106,7 +104,6 @@ function DataTable(props) {
         }
         break;
       case 'prev-btn':
-        console.log('skip to prev page');
         if (currentPage.current > 1) {
           currentPage.current--;
           setFirstEntry(firstEntry - entry);
@@ -117,11 +114,10 @@ function DataTable(props) {
         return console.log('no action');
     }
   };
-  console.log(currentPage.current);
   var searchEmployee = function searchEmployee(e) {
     var value = e.target.value;
     var result = [];
-    if (localStorage.length > 0) {
+    if (data.length > 0) {
       data.filter(function (employee) {
         var EmployeeList = JSON.stringify(Object.values(employee));
         if (EmployeeList.toLowerCase().includes(value.toLowerCase())) {
@@ -135,11 +131,9 @@ function DataTable(props) {
         return setSortedData(result);
       });
     }
-    //console.log(result)
   };
-
   var pages = [];
-  if (localStorage.length > 0) {
+  if (data.length > 0) {
     var NumberOfPages = Math.ceil(sortedData.length / entry);
     for (var i = 1; i <= NumberOfPages; i++) {
       pages.push(i);
@@ -161,7 +155,7 @@ function DataTable(props) {
     }
   };
   (0, useEffect)(function () {
-    if (localStorage.length > 0) {
+    if (data.length > 0) {
       if (pages.length < 1) {
         currentPage.current = 0;
       } else {
@@ -169,10 +163,8 @@ function DataTable(props) {
       }
       if (sortedData.length >= entry) {
         setMaxEntries(entry);
-        //console.log('selected entry')
       } else {
         setMaxEntries(sortedData.length);
-        //console.log('sortedData.length')
       }
       if (unFound) {
         setFirstEntry(0);
@@ -181,10 +173,9 @@ function DataTable(props) {
         setFirstEntry(1);
       }
     }
-  }, [entry, pages.length, sortedData, unFound]);
-  //console.log(firstEntry,maxEntries)
+  }, [data.length, entry, pages.length, sortedData, unFound]);
   (0, useEffect)(function () {
-    if (localStorage.length > 0) {
+    if (data.length > 0) {
       if (currentPage.current === 0) {
         document.getElementById('prev-btn').style.background = 'none';
         document.getElementById('next-btn').style.background = 'none';
@@ -199,7 +190,7 @@ function DataTable(props) {
         document.getElementById('next-btn').style.background = '#687e12';
       }
     }
-  }, [currentPage, firstEntry, maxEntries, sortedData]);
+  }, [currentPage, data.length, firstEntry, maxEntries, sortedData]);
   return /*#__PURE__*/React.createElement("div", {
     id: "employee-div",
     className: "container"
@@ -218,7 +209,7 @@ function DataTable(props) {
     type: "text",
     id: "searchbar",
     name: "searchbar"
-  }))), localStorage.length > 0 ? /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, Object.keys(data[0]).map(function (key, index) {
+  }))), data.length > 0 ? /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, Object.keys(data[0]).map(function (key, index) {
     return /*#__PURE__*/React.createElement("th", {
       id: key,
       onClick: function onClick() {
@@ -278,5 +269,4 @@ function DataTable(props) {
     className: "empty-list"
   }, "There's no Data"));
 }
-
-export { DataTable};
+export { DataTable };
