@@ -1,6 +1,14 @@
 import { useState, useEffect, useRef } from "react"
 import "./css/DataTable.css"
 
+/**
+ * React component for represents a data table.
+ *
+ * @component
+ * @param {Array} props.data - An array of objects representing the data to be displayed in the table.
+ * @returns {JSX.Element} DataTable component
+ */
+
 function DataTable(props) {
     const data = props.data
     const [sortedData, setSortedData] = useState(data)
