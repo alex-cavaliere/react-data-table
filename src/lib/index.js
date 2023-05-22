@@ -212,7 +212,7 @@ function DataTable(props) {
                 }
                 <tfoot>
                     <tr> 
-                        <td colSpan='6'>Showing {firstEntry} To {maxEntries} Of {sortedData.length} Entries {sortedData.length < data.length && ' (filtered from ' + data.length + ' total entries)'}</td>
+                        <td colSpan={JSON.stringify(Object.keys(data[0]).length - 2)}>Showing {firstEntry} To {maxEntries} Of {sortedData.length} Entries {sortedData.length < data.length && ' (filtered from ' + data.length + ' total entries)'}</td>
                         <td>
                             <button id='prev-btn' onClick={handlePrevNext}>Preview</button>
                         </td>

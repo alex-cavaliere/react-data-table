@@ -1,5 +1,5 @@
 "use strict";
-import React from "react"
+import React from 'react'
 import { useState, useRef, useEffect } from "react";
 import "./css/DataTable.css";
 
@@ -16,6 +16,14 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) {return _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/**
+ * React component for represents a data table.
+ *
+ * @component
+ * @param {Array} props.data - An array of objects representing the data to be displayed in the table.
+ * @returns {JSX.Element} DataTable component
+ */
+
 function DataTable(props) {
   var data = props.data;
   var _useState = (0, useState)(data),
@@ -254,7 +262,7 @@ function DataTable(props) {
     colSpan: "10",
     className: "empty-list"
   }, "No Data Found"))), /*#__PURE__*/React.createElement("tfoot", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
-    colSpan: "6"
+    colSpan: JSON.stringify(Object.keys(data[0]).length - 2)
   }, "Showing ", firstEntry, " To ", maxEntries, " Of ", sortedData.length, " Entries ", sortedData.length < data.length && ' (filtered from ' + data.length + ' total entries)'), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("button", {
     id: "prev-btn",
     onClick: handlePrevNext
